@@ -57,7 +57,7 @@ class WeaponType:
         self.angles = [PI]
         self.radius = 30
         self.speed = 10
-        self.coolDown = 50
+        self.coolDown = 150
         self.damage = 1
 
 

@@ -1,14 +1,14 @@
 from sky import Sky
 from ship import Ship
 from guns import Weapon
-from enemy import Enemy
+from enemy import Enemy, EnemyTypeInvader1
 
 
 DEBUG = True
 STAR_COUNT = 1000
 
 
-tick = 0
+tick = -1
 sky = None
 ship = None
 gun = None
@@ -22,7 +22,6 @@ def setup():
     sky = Sky(STAR_COUNT)
     ship = Ship()
     gun = Weapon(ship)
-    enemies.append(Enemy())
 
 
 def draw():
@@ -48,7 +47,9 @@ def draw():
     for enemy in removeEnemies:
         enemies.remove(enemy)
     if (tick % 100) == 0:
-        enemies.append(Enemy())
+        e = Enemy()
+        e.set_type(EnemyTypeInvader1())
+        enemies.append(e)
     
     if mousePressed:
         gun.shoot()
@@ -65,7 +66,7 @@ def draw():
     rect(75, 10, max(map(ship.shield.health, 0, 100, 0, 400), 0), 15)
     pop()
     
-    if DEBUG:
+    if not DEBUG:
         push()
         translate(0, 50)
         textSize(20)

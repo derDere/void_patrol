@@ -3,6 +3,20 @@ from shield import Shield
 
 MAX_ROTATION = PI * 0.05
 
+            
+def draw_shape(*points):
+    beginShape()
+    for x, y in points:
+        vertex(x, y)
+    endShape(CLOSE)
+
+            
+def draw_shape_open(*points):
+    beginShape()
+    for x, y in points:
+        vertex(x, y)
+    endShape()
+
 
 class Ship():
     
@@ -13,25 +27,6 @@ class Ship():
         self.targetRotation = float(0)
         self.speed = 10
         self.lastX = self.pos.x
-        #self.shield = ShieldFrame(
-        #                     0xFF007FFF,
-        #                     PVector( -55, -45),
-        #                     PVector( -10, -70),
-        #                     PVector( 10, -110),
-        #                     PVector( 30, -110),
-        #                     PVector( 30, -70),
-        #                     PVector( 45, -60),
-        #                     PVector( 45, -33),
-        #                     PVector( 113, -18),
-        #                     PVector( 113, 18),
-        #                     PVector( 45, 33),
-        #                     PVector( 45, 60),
-        #                     PVector( 30, 70),
-        #                     PVector( 30, 110),
-        #                     PVector( 10, 110),
-        #                     PVector( -10, 70),
-        #                     PVector( -55, 45),
-        #                   )
         self.shield = Shield(0xFF007FFF, 160, 200, self, PVector(20,0))
     
     def get_gun_point(self, pointIndex):
@@ -91,12 +86,6 @@ class Ship():
         self.lastX = self.pos.x
         
         self.shield.loop(tick)
-            
-    def _shape(self, *points):
-        beginShape()
-        for x, y in points:
-            vertex(x, y)
-        endShape(CLOSE)
     
     def draw(self, tick):
         push()
@@ -125,38 +114,38 @@ class Ship():
         ellipse(10,  50, 50, 10)
         
         # thruster top
-        self._shape( (-25, -30), (-45, -40), (-45, -15), (-25, -15) )
+        draw_shape( (-25, -30), (-45, -40), (-45, -15), (-25, -15) )
         
         # thruster bot
-        self._shape( (-25, 30), (-45, 40), (-45, 15), (-25, 15) )
+        draw_shape( (-25, 30), (-45, 40), (-45, 15), (-25, 15) )
         
         # big wing top
-        self._shape( (20, -20), (20, -100), (15, -100), (0, -60), (-20, -30), (-20, -10) )
+        draw_shape( (20, -20), (20, -100), (15, -100), (0, -60), (-20, -30), (-20, -10) )
         
         # big wing bottom
-        self._shape( (20, 20), (20, 100), (15, 100), (0, 60), (-20, 30), (-20, 10) )
+        draw_shape( (20, 20), (20, 100), (15, 100), (0, 60), (-20, 30), (-20, 10) )
         
         # middle wing top
-        self._shape( (0, -30), (100, -10), (-20, -10) )
+        draw_shape( (0, -30), (100, -10), (-20, -10) )
         
         # middle wing bottom
-        self._shape( (0, 30), (100, 10), (-20, 10) )
+        draw_shape( (0, 30), (100, 10), (-20, 10) )
         
         # center cabine
-        self._shape( (-10, -20), (50, 0), (-10, 20), (-30, 0) )
+        draw_shape( (-10, -20), (50, 0), (-10, 20), (-30, 0) )
         
         # frame top top
-        self._shape( (-10, -30), (-30, -20), (-30, -5), (-10, -5) )
+        draw_shape( (-10, -30), (-30, -20), (-30, -5), (-10, -5) )
         
         # frame top bot
-        self._shape( (-10, 30), (-30, 20), (-30, 5), (-10, 5) )
+        draw_shape( (-10, 30), (-30, 20), (-30, 5), (-10, 5) )
         
         # fin
         ellipse(-30, 0, 30, 5)
         
         # window
         fill(255, 200, 0)
-        self._shape( (25, -5), (40, 0), (25, 5), (20, 0) )
+        draw_shape( (25, -5), (40, 0), (25, 5), (20, 0) )
         
         pop()
         
@@ -212,8 +201,28 @@ class Ship():
 
 
 
-
-
+#
+#  OLD Shield Shape
+#
+        #self.shield = ShieldFrame(
+        #                     0xFF007FFF,
+        #                     PVector( -55, -45),
+        #                     PVector( -10, -70),
+        #                     PVector( 10, -110),
+        #                     PVector( 30, -110),
+        #                     PVector( 30, -70),
+        #                     PVector( 45, -60),
+        #                     PVector( 45, -33),
+        #                     PVector( 113, -18),
+        #                     PVector( 113, 18),
+        #                     PVector( 45, 33),
+        #                     PVector( 45, 60),
+        #                     PVector( 30, 70),
+        #                     PVector( 30, 110),
+        #                     PVector( 10, 110),
+        #                     PVector( -10, 70),
+        #                     PVector( -55, 45),
+        #                   )
 
 
 
