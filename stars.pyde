@@ -1,7 +1,7 @@
 from sky import Sky
 from ship import Ship
 from guns import Weapon
-from enemy import Enemy, EnemyTypeInvader1
+from enemy import Enemy, EnemyTypeInvader1, enemyGunBullets
 
 
 DEBUG = True
@@ -37,11 +37,12 @@ def draw():
     ship.draw(tick)
     
     removeEnemies = []
+    if len(enemies) > 0:
+        ship.shield.check(enemyGunBullets)
     for enemy in enemies:
-        enemy.shield.check(gun)
+        enemy.shield.check(gun.bullets)
         enemy.loop(tick)
         enemy.draw(tick)
-        ship.shield.check(enemy.gun)
         if enemy.kill:
             removeEnemies.append(enemy)
     for enemy in removeEnemies:

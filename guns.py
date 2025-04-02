@@ -13,14 +13,26 @@ class Bullet:
         self.dir.mult(s)
         self.kill = False # Remove
         self.d = d # Damage
+        self.lastLoopTick = -2
+        self.lastDrawTick = -2
     
     def loop(self, tick):
+        if self.lastLoopTick == tick:
+            return
+        
+        self.lastLoopTick = tick
+        
         self.pos.add(self.dir)
         
         if (self.pos.x > (width + self.r)) or (self.pos.x < -self.r) or (self.pos.y > (height + self.r)) or (self.pos.y < -self.r):
             self.kill = True
     
     def draw(self, tick):
+        if self.lastDrawTick == tick:
+            return
+        
+        self.lastDrawTick = tick
+        
         push()
         noStroke();
         translate(self.pos.x, self.pos.y)

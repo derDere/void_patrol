@@ -4,6 +4,9 @@ from shield import Shield
 from ship import draw_shape, draw_shape_open
 
 
+enemyGunBullets = []
+
+
 class EnemyTypeBase:
     
     def get_gun_points(self):
@@ -126,10 +129,12 @@ class EnemyTypeInvader1(EnemyTypeBase):
 class Enemy:
     
     def __init__(self):
+        global enemyGunBullets
         self.pos = PVector(width + 200, randint(20, height-20))
         self.dir = PVector(-2.5, 0)
         self.kill = False
         self.gun = Weapon(self)
+        self.gun.bullets = enemyGunBullets
         self.type = EnemyTypeBase()
         self.shield = self.type.get_shield(self)
         self.type.set_gun(self.gun)

@@ -81,10 +81,10 @@ class Shield:
         self.blink = 0
         self.visible = False
     
-    def check(self, gun):
+    def check(self, bullets):
         pos = self.origin.pos.copy()
         pos.add(self.offSet)
-        for bullet in gun.bullets:
+        for bullet in bullets:
             intersects = is_vector_in_ellipse(pos, self.sizeHalf, bullet.pos)
             if intersects:
                 self.blink = 30

@@ -3,14 +3,14 @@ from shield import Shield
 
 MAX_ROTATION = PI * 0.05
 
-            
+
 def draw_shape(*points):
     beginShape()
     for x, y in points:
         vertex(x, y)
     endShape(CLOSE)
 
-            
+
 def draw_shape_open(*points):
     beginShape()
     for x, y in points:
